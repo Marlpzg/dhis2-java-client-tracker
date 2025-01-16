@@ -88,6 +88,7 @@ import org.hisp.dhis.model.datastore.DataStoreEntries;
 import org.hisp.dhis.model.datastore.EntryMetadata;
 import org.hisp.dhis.model.datavalueset.DataValueSet;
 import org.hisp.dhis.model.datavalueset.DataValueSetImportOptions;
+import org.hisp.dhis.model.enrollment.Enrollment;
 import org.hisp.dhis.model.event.Event;
 import org.hisp.dhis.model.event.Events;
 import org.hisp.dhis.model.event.EventsResult;
@@ -2391,5 +2392,22 @@ public class Dhis2 extends BaseDhis2 {
             JobNotification[].class);
 
     return new ArrayList<>(Arrays.asList(response));
+  }
+
+  // -------------------------------------------------------------------------
+  // Enrollment
+  // -------------------------------------------------------------------------
+
+  /**
+   * Retrieves an {@link Enrollment}
+   *
+   * @param id the enrollment identifier
+   * @return the {@link Enrollment}
+   */
+  public Enrollment getEnrollment(String id){
+    return getObject(
+            config.getResolvedUriBuilder().appendPath("tracker").appendPath("enrollments").appendPath(id),
+            Query.instance(),
+            Enrollment.class);
   }
 }

@@ -29,7 +29,9 @@ package org.hisp.dhis.model.enrollment;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.hisp.dhis.model.GeoJson;
 import org.hisp.dhis.model.event.Events;
+import org.hisp.dhis.model.trackedentity.TrackedEntityAttributeValue;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class Enrollment implements Serializable {
   @JsonProperty(value = "enrollment")
   private String id;
 
-  @JsonProperty private String program;
+  @ToString.Include @JsonProperty private String program;
 
   @ToString.Include @JsonProperty private String trackedEntity;
 
@@ -78,11 +80,11 @@ public class Enrollment implements Serializable {
 
   @JsonProperty private Boolean deleted;
 
-  //TODO geometry GeoJson
+  @JsonProperty private GeoJson geometry;
 
   @JsonProperty private String storedBy;
 
-  //TODO atributes List<TrackedEntityAttributeValue>
+  @JsonProperty private List<TrackedEntityAttributeValue> attributes;
 
   private Events events;
 
